@@ -24,8 +24,54 @@ id productName price quantity
 19847983Куртка для сноубордистов, разм10173.991234
 */
 
-public class Solution {
-    public static void main(String[] args) {
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
+public class Solution {
+    public static void main(String[] args) throws Exception {
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String fileName = reader.readLine();
+        reader.close();
+        List<String> stringList = new ArrayList<String>();
+        String id = String.format("%-8.8s", args[1]);
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+        if (args[0].equals("-u")) {
+            String productName = String.format("%-30.30s", args[2]);
+            String price = String.format("%-8.8s", args[3]);
+            String quantity = String.format("%-4.4s", args[4]);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                if (line.startsWith(id)) {
+                    stringList.add(id + productName + price + quantity);
+                } else {
+                    stringList.add(line);
+                }
+            }
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
+            for (String str : stringList) {
+                bufferedWriter.write(str);
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+        }
+        if (args[0].equals("-d")) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                if (line.startsWith(id)) {
+                } else {
+                    stringList.add(line);
+                }
+            }
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
+            for (String str : stringList) {
+                bufferedWriter.write(str);
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+        }
+        bufferedReader.close();
     }
 }
