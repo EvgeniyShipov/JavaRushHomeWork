@@ -1,10 +1,10 @@
 package com.javarush.test.level19.lesson10.home04;
 
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /* Ищем нужные строки
 Считать с консоли имя файла.
@@ -28,13 +28,15 @@ public class Solution {
     }
 
     public static void main(String[] args) throws IOException {
-        String fileName = args[0];
-        int number = 0;
+        Scanner scanner2 = new Scanner(System.in);
+        String fileName = scanner2.nextLine();
+        int number;
+        scanner2.close();
 
-        BufferedReader reader = new BufferedReader((new FileReader(fileName)));
-        while (reader.ready()) {
+        Scanner scanner = new Scanner(new FileReader(fileName));
+        while (scanner.hasNext()) {
             number = 0;
-            String line = reader.readLine();
+            String line = scanner.nextLine();
             String[] line1 = line.split(" ");
             for (String s : words) {
                 for (String l : line1) {
@@ -42,13 +44,12 @@ public class Solution {
                         number++;
                     }
                 }
-
             }
 
             if (number == 2) {
                 System.out.println(line);
             }
         }
-        reader.close();
+        scanner.close();
     }
 }
