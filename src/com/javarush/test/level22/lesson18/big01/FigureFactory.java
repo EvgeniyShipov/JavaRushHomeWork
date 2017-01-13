@@ -3,8 +3,7 @@ package com.javarush.test.level22.lesson18.big01;
 /**
  * Клсс FigureFactory отвечает за создание объектов-фигурок.
  */
-public class FigureFactory
-{
+public class FigureFactory {
     /**
      * Набор из шести шаблонов для фигурок
      */
@@ -37,8 +36,7 @@ public class FigureFactory
     /**
      * Метод выбирает случайный шаблон и создает с ним новую фигурку.
      */
-    public static Figure createRandomFigure(int x,int y)
-    {
+    public static Figure createRandomFigure(int x, int y) {
         int index = (int) (Math.random() * 6);
         return new Figure(x, y, BRICKS[index]);
     }
