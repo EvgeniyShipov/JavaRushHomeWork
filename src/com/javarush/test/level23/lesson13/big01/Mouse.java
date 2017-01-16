@@ -1,8 +1,8 @@
 package com.javarush.test.level23.lesson13.big01;
 
 public class Mouse {
-    public int x;
-    public int y;
+    private int x;
+    private int y;
 
     public Mouse(int x, int y) {
         this.x = x;
