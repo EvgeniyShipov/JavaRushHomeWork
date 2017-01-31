@@ -79,9 +79,20 @@ public enum Column implements Columnable {
      */
     public static List<Column> getVisibleColumns() {
         List<Column> result = new LinkedList<>();
-        for (int i = 0; i < realOrder.length; i++) {
-            if (realOrder[i] != -1) {
-                result.add(Column.values()[realOrder[i] + 1]);
+        int x = 0;
+        for (int j = 0; j < realOrder.length; j++) {
+            if (realOrder[j] != -1) {
+                x++;
+            }
+        }
+        while (x > 0) {
+            for (int i = 0; i < realOrder.length; i++) {
+                if (realOrder[i] != -1) {
+                    if (realOrder[i] == result.size()) {
+                        result.add(Column.values()[i]);
+                        x--;
+                    }
+                }
             }
         }
         return result;
